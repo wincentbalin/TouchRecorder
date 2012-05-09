@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBoxPreference
+        android:key="view"
+        android:title="@string/preference_view_title"
+        android:summary="@string/preference_view_summary"
+        android:defaultValue="true" />
+    <CheckBoxPreference
+        android:key="save"
+        android:title="@string/preference_save_title"
+        android:summary="@string/preference_save_summary"
+        android:defaultValue="false" />
+    <CheckBoxPreference
+        android:key="debug"
+        android:title="@string/preference_debug_title"
+        android:summary="@string/preference_debug_summary"
+        android:defaultValue="false" />
+    <EditTextPreference
+        android:key="size"
+        android:inputType="numberDecimal"
+        android:title="@string/preference_size_title"
+        android:summary="@string/preference_size_summary"
+        android:defaultValue="80.0" />
+    <EditTextPreference
+        android:key="pressure"
+        android:inputType="numberDecimal"
+        android:title="@string/preference_pressure_title"
+        android:summary="@string/preference_pressure_summary"
+        android:defaultValue="360.0" />
+</PreferenceScreen>

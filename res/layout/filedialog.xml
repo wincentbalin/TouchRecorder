@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:padding="2dp">
+
+    <TextView
+        android:id="@+id/filepath"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/filepath_initial"
+        android:textSize="16sp"
+        android:padding="10dip" />
+
+    <ListView
+        android:id="@+id/filenames"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.8"
+        android:padding="1dp" />
+
+	<TableRow
+	    android:paddingTop="1dp">
+		<EditText
+		    android:id="@+id/filename"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="0.1"
+		    android:inputType="text"
+		    android:singleLine="true" />
+
+		<Button
+		    android:id="@+id/filename_accept"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="@string/filename_accept" />
+	</TableRow>
+</TableLayout>

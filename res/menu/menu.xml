@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/view" android:title="@string/view_label" android:alphabeticShortcut="@string/view_shortcut" />
+    <item android:id="@+id/save" android:title="@string/save_label" android:alphabeticShortcut="@string/save_shortcut" />
+    <item android:id="@+id/clear" android:title="@string/clear_label" android:alphabeticShortcut="@string/clear_shortcut" />
+    <item android:id="@+id/loadimage" android:title="@string/loadimage_label" android:alphabeticShortcut="@string/loadimage_shortcut" />
+    <item android:id="@+id/preferences" android:title="@string/preferences_label" android:alphabeticShortcut="@string/preferences_shortcut" />
+    <item android:id="@+id/help" android:title="@string/help_label" android:alphabeticShortcut="@string/help_shortcut" />
+</menu>

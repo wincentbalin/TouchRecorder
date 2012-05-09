@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Main widget -->
+    <string name="app_name">TouchRecorder</string>
+	<string name="intro_help">Paint on canvas. Press Menu for other functions.</string>
+	<string name="exit_help">Continue pressing Back to exit.</string>
+	
+	<!-- Context menu -->
+	<string name="view_label">View</string>
+	<string name="view_shortcut">v</string>
+	<string name="save_label">Save</string>
+	<string name="save_shortcut">s</string>
+	<string name="clear_label">Clear</string>
+	<string name="clear_shortcut">c</string>
+	<string name="loadimage_label">Load image</string>
+	<string name="loadimage_shortcut">l</string>
+	<string name="preferences_label">Preferences</string>
+	<string name="preferences_shortcut">p</string>
+	<string name="help_label">Help</string>
+	<string name="help_shortcut">h</string>
+	
+	<!-- Help view -->
+	<string name="help_title">TouchRecorder Help</string>
+	<string name="help_text">This is an application for recording of touch events. Just draw on the screen; the events will show up as circles, large as the size of the event;
+	    the fatter arc shows the strength of pressure; you may change according values in the preferences dialog. Starting event is painted in dark red, the rest in black.\n\n
+	    Also, the event are dumped into the LogCat, with tag "event", using the non-human-readable format, as default.  To switch this, look into the Preferences dialog below.\n\n
+	    Pressing the Menu button, you will reach further functions.\n\n
+	    Pressing View, you look at the recorded events, using the human-readable format, as default. To switch this, look into the Preferences dialog below.\n\n
+	    Pressing Save, you save the recorded events, using the non-human-readable format, as default.  To switch this, look into the Preferences dialog below.\n\n
+	    Pressing Clear, you will clear both the canvas and the log buffer.\n\n
+	    Pressing Load image, you will load an image onto canvas. Using a white image, as large as canvas, you can clear the screen without deleting recorded events.
+	    Use transparent background in the image file to let the already painted contents remain on screen.\n\n
+	    Pressing preferences, you get the preferences dialog, where you can (currently) switch the format of viewed or exported data, as well as dimensions of circles and arcs
+	    in the visualizations of events.\n\n
+	    Pressing Help, you get hereto.</string>
+	
+	<!-- Log viewer -->
+	<string name="logview_title">View logged events</string>
+	<string name="logview_no_content">No events recorded</string>
+	
+	<!-- File dialog -->
+	<string name="filedialog_title">Choose file</string>
+	<string name="filepath_initial">Path</string>
+	<string name="filename_accept">Accept</string>
+	<string name="cannot_read_directory">Cannot read directory!</string>
+	<string name="enter_filename_first">Enter a file name first!</string>
+	<string name="accept_filename_advice">Click again to accept</string>
+	<string name="file_not_found">File not found!</string>
+	<string name="something_wrong_with_file">Something wrong with file!</string>
+	<string name="something_wrong_with_directory">Something wrong with directory!</string>
+	
+	<!-- Preferences -->
+	<string name="preferences_title">TouchRecorder preferences</string>
+	<string name="preference_view_title">View data is verbose</string>
+	<string name="preference_view_summary">View data is human-readable</string>
+	<string name="preference_save_title">Save data is verbose</string>
+	<string name="preference_save_summary">Save data is human-readable</string>
+	<string name="preference_debug_title">Debug data is verbose</string>
+	<string name="preference_debug_summary">Debug data is human-readable</string>
+	<string name="preference_size_title">Normal event radius</string>
+	<string name="preference_size_summary">Circle radius for event with size of 1.0</string>
+	<string name="preference_pressure_title">Maximal pressure</string>
+	<string name="preference_pressure_summary">How many 1/1000th in arc of 360°</string>
+	
+	<string name="wrong_numeric_preference">Wrong value of a numeric preference!</string>
+</resources>
