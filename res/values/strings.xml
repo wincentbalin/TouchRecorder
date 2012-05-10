@@ -31,7 +31,7 @@
 	    Pressing Load image, you will load an image onto canvas. Using a white image, as large as canvas, you can clear the screen without deleting recorded events.
 	    Use transparent background in the image file to let the already painted contents remain on screen.\n\n
 	    Pressing preferences, you get the preferences dialog, where you can (currently) switch the format of viewed or exported data, as well as dimensions of circles and arcs
-	    in the visualizations of events.\n\n
+	    in the visualizations of events and whether to draw circles or the lines only.\n\n
 	    Pressing Help, you get hereto.</string>
 	
 	<!-- Log viewer -->
@@ -61,6 +61,8 @@
 	<string name="preference_size_summary">Circle radius for event with size of 1.0</string>
 	<string name="preference_pressure_title">Maximal pressure</string>
 	<string name="preference_pressure_summary">How many 1/1000th in arc of 360°</string>
+	<string name="preference_survey_mode_title">Survey mode</string>
+	<string name="preference_survey_mode_summary">Draw lines only</string>
 	
 	<string name="wrong_numeric_preference">Wrong value of a numeric preference!</string>
 </resources>

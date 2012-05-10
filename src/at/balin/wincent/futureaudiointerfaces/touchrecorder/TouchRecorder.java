@@ -46,7 +46,8 @@ import android.widget.Toast;
 // * Loading of an image                                                 v
 // * Wrap MotionEvent into a TouchRecorderEvent to note image loads      v
 // * Convert About activity to Help activity                             v
-// * Make radius of circle and amount of units in the arc to options
+// * Make radius of circle and amount of units in the arc to options     v
+// * Create survey mode, where circles are not drawn                     v
 
 
 /**
@@ -201,6 +202,8 @@ public class TouchRecorder extends Activity
         private float radiusOf1 = 80.0f;
         private float maxPressure = 360.0f;
         
+        private boolean surveyMode = false;
+
         private final int backgroundColor = Color.WHITE;
         private final int touchStartColor = Color.argb(200, 126, 0, 33); // Semi-transparent wine red
         private final int touchRestColor = Color.argb(200, 0, 0, 0); // Semi-transparent black
@@ -277,11 +280,11 @@ public class TouchRecorder extends Activity
                     case MotionEvent.ACTION_DOWN:
                         visualizeActionDown(motionEvent);
                         break;
-                        
+
                     case MotionEvent.ACTION_MOVE:
                         visualizeActionMove(motionEvent);
                         break;
-                        
+
                     case MotionEvent.ACTION_UP:
                     case MotionEvent.ACTION_CANCEL:
                         visualizeActionUp(motionEvent);
@@ -295,7 +298,6 @@ public class TouchRecorder extends Activity
                         visualizeActionPointerUp(motionEvent);
                         break;
                     }
-                    
                 }
                 
                 lastEventIndex = log.size();
@@ -417,7 +419,7 @@ public class TouchRecorder extends Activity
             final float bottom = y + radius;
             RectF bounds = new RectF(left, top, right, bottom);
             
-            if(overlap || (!overlap && !RectF.intersects(bounds, previousBounds[pointerId])))
+            if(!surveyMode && (overlap || (!overlap && !RectF.intersects(bounds, previousBounds[pointerId]))))
             {
                 // Express one thousandth of one pressure unit as one degree angle
                 final float pressureAngle = Math.min(pressure, maxPressure) * (360.0f / maxPressure) * 1000.0f;
@@ -452,7 +454,7 @@ public class TouchRecorder extends Activity
             
             // Beginning a touch, update dimensional settings
             if((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_DOWN)
-                updateDimensionalSettings();
+                updateSettings();
 
             // Notify drawing method about new event
             drawEventFlag = true;
@@ -461,7 +463,7 @@ public class TouchRecorder extends Activity
             return true;
         }
         
-        private void updateDimensionalSettings()
+        private void updateSettings()
         {
             final Context context = getContext();
 
@@ -488,6 +490,8 @@ public class TouchRecorder extends Activity
             {
                 Toast.makeText(context, R.string.wrong_numeric_preference, Toast.LENGTH_LONG).show();
             }
+
+            surveyMode = Preferences.surveyMode(context);
         }
         
         /**

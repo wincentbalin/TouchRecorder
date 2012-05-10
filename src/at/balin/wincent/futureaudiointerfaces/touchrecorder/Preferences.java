@@ -73,4 +73,15 @@ public class Preferences extends PreferenceActivity
     {
         return PreferenceManager.getDefaultSharedPreferences(context).getString("pressure", "360.0");
     }
+
+    /**
+     * Option whether to draw lines only or circles too.
+     *
+     * @param context Application context
+     * @return Boolean option
+     */
+    public static boolean surveyMode(Context context)
+    {
+        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("surveymode", false);
+    }
 }
