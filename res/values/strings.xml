@@ -63,6 +63,8 @@
 	<string name="preference_pressure_summary">How many 1/1000th in arc of 360°</string>
 	<string name="preference_survey_mode_title">Survey mode</string>
 	<string name="preference_survey_mode_summary">Draw lines only</string>
+	<string name="preference_line_width_title">Line width</string>
+	<string name="preference_line_width_summary">Line width in survey mode</string>
 	
 	<string name="wrong_numeric_preference">Wrong value of a numeric preference!</string>
 </resources>

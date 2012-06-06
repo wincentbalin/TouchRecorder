@@ -60,7 +60,7 @@ public class Preferences extends PreferenceActivity
      */
     public static String radiusOfOne(Context context)
     {
-        return PreferenceManager.getDefaultSharedPreferences(context).getString("size", "80.0");
+        return PreferenceManager.getDefaultSharedPreferences(context).getString("size", "80.0f");
     }
     
     /**
@@ -69,9 +69,9 @@ public class Preferences extends PreferenceActivity
      * @param context Application context
      * @return Float option as string
      */
-    public static String pressureOfOne(Context context)
+    public static String maxPressure(Context context)
     {
-        return PreferenceManager.getDefaultSharedPreferences(context).getString("pressure", "360.0");
+        return PreferenceManager.getDefaultSharedPreferences(context).getString("pressure", "360.0f");
     }
 
     /**
@@ -83,5 +83,16 @@ public class Preferences extends PreferenceActivity
     public static boolean surveyMode(Context context)
     {
         return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("surveymode", false);
+    }
+
+    /**
+     * Option of line width in survey mode.
+     *
+     * @param context Application context
+     * @return Float option as string
+     */
+    public static String surveyModeLineWidth(Context context)
+    {
+        return PreferenceManager.getDefaultSharedPreferences(context).getString("linewidth", "3.0f");
     }
 }

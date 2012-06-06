@@ -48,6 +48,8 @@ import android.widget.Toast;
 // * Convert About activity to Help activity                             v
 // * Make radius of circle and amount of units in the arc to options     v
 // * Create survey mode, where circles are not drawn                     v
+// * Make survey mode draw points too, ...
+// * ... with variable line width
 
 
 /**
@@ -203,6 +205,7 @@ public class TouchRecorder extends Activity
         private float maxPressure = 360.0f;
         
         private boolean surveyMode = false;
+        private float surveyModeLineWidth = 3.0f;
 
         private final int backgroundColor = Color.WHITE;
         private final int touchStartColor = Color.argb(200, 126, 0, 33); // Semi-transparent wine red
@@ -328,19 +331,19 @@ public class TouchRecorder extends Activity
             for(int i = 0; i < event.getPointerCount(); i++)
             {
                 final int pointerId = event.getPointerId(i);
-                
+
                 final int historySize = event.getHistorySize();
-                
+
                 for(int h = 0; h < historySize; h++)
                 {
                     final float x = event.getHistoricalX(i, h);
                     final float y = event.getHistoricalY(i, h);
-                    
+
                     drawTransition(canvas, x, y, pointerId, touchRestPaint);
-                    
+
                     final float size = event.getHistoricalSize(i, h);
                     final float pressure = event.getHistoricalPressure(i, h);
-                    
+
                     drawEvent(canvas, x, y, size, pressure, pointerId, false, touchRestPaint);
                 }
 
@@ -405,7 +408,7 @@ public class TouchRecorder extends Activity
         
         private void drawTransition(Canvas canvas, float x, float y, int pointerId, Paint paint)
         {
-            paint.setStrokeWidth(STROKE_WIDTH_HAIRLINE);
+            paint.setStrokeWidth(surveyMode ? surveyModeLineWidth : STROKE_WIDTH_HAIRLINE);
             canvas.drawLine(previousX[pointerId], previousY[pointerId], x, y, paint);
         }
         
@@ -418,23 +421,31 @@ public class TouchRecorder extends Activity
             final float right = x + radius;
             final float bottom = y + radius;
             RectF bounds = new RectF(left, top, right, bottom);
-            
-            if(!surveyMode && (overlap || (!overlap && !RectF.intersects(bounds, previousBounds[pointerId]))))
+
+            if(surveyMode)
             {
-                // Express one thousandth of one pressure unit as one degree angle
-                final float pressureAngle = Math.min(pressure, maxPressure) * (360.0f / maxPressure) * 1000.0f;
-
-                paint.setStrokeWidth(STROKE_WIDTH_FAT);
-                canvas.drawArc(bounds, 0.0f, pressureAngle, false, paint);
-
-                if(pressureAngle < 360.0f)
+                paint.setStrokeWidth(surveyModeLineWidth);
+                canvas.drawPoint(x, y, paint);
+            }
+            else
+            {
+                if(overlap || (!overlap && !RectF.intersects(bounds, previousBounds[pointerId])))
                 {
-                    paint.setStrokeWidth(STROKE_WIDTH_HAIRLINE);
-                    canvas.drawArc(bounds, pressureAngle, 360.0f, false, paint);
+                    // Express one thousandth of one pressure unit as one degree angle
+                    final float pressureAngle = Math.min(pressure, maxPressure) * (360.0f / maxPressure) * 1000.0f;
+
+                    paint.setStrokeWidth(STROKE_WIDTH_FAT);
+                    canvas.drawArc(bounds, 0.0f, pressureAngle, false, paint);
+
+                    if(pressureAngle < 360.0f)
+                    {
+                        paint.setStrokeWidth(STROKE_WIDTH_HAIRLINE);
+                        canvas.drawArc(bounds, pressureAngle, 360.0f, false, paint);
+                    }
+
+                    // Store boundaries
+                    previousBounds[pointerId] = bounds;
                 }
-                
-                // Store boundaries
-                previousBounds[pointerId] = bounds;
             }
             
             // Store coordinates
@@ -466,32 +477,29 @@ public class TouchRecorder extends Activity
         private void updateSettings()
         {
             final Context context = getContext();
-
-            final String sizeOf1String = Preferences.radiusOfOne(context);
-            final String maxPressureString = Preferences.pressureOfOne(context);
             
+            final String radiusOf1String = Preferences.radiusOfOne(context);
+            final String maxPressureString = Preferences.maxPressure(context);
+
             final float displayDensity = context.getResources().getDisplayMetrics().density;
 
+            final String surveyModeLineWidthString = Preferences.surveyModeLineWidth(context);
+
             try
             {
-                radiusOf1 = Float.parseFloat(sizeOf1String);
+                radiusOf1 = Float.parseFloat(radiusOf1String);
                 radiusOf1 *= displayDensity;
-            }
-            catch(NumberFormatException e)
-            {
-                Toast.makeText(context, R.string.wrong_numeric_preference, Toast.LENGTH_LONG).show();
-            }
 
-            try
-            {
                 maxPressure = Float.parseFloat(maxPressureString);
+
+                surveyMode = Preferences.surveyMode(context);
+
+                surveyModeLineWidth = Float.parseFloat(surveyModeLineWidthString);
             }
             catch(NumberFormatException e)
             {
                 Toast.makeText(context, R.string.wrong_numeric_preference, Toast.LENGTH_LONG).show();
             }
-
-            surveyMode = Preferences.surveyMode(context);
         }
         
         /**

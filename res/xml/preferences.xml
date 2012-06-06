@@ -32,4 +32,10 @@
         android:title="@string/preference_survey_mode_title"
         android:summary="@string/preference_survey_mode_summary"
         android:defaultValue="false"/>
+    <EditTextPreference
+        android:key="linewidth"
+        android:inputType="numberDecimal"
+        android:title="@string/preference_line_width_title"
+        android:summary="@string/preference_line_width_summary"
+        android:defaultValue="3.0" />
 </PreferenceScreen>
