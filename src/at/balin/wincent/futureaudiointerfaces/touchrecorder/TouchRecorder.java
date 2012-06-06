@@ -48,8 +48,8 @@ import android.widget.Toast;
 // * Convert About activity to Help activity                             v
 // * Make radius of circle and amount of units in the arc to options     v
 // * Create survey mode, where circles are not drawn                     v
-// * Make survey mode draw points too, ...
-// * ... with variable line width
+// * Make survey mode draw points too, ...                               v
+// * ... with variable line width                                        v
 
 
 /**
